@@ -111,9 +111,8 @@ const MorePosts = ({ username, name, number }) => (
           </span>
         </EllipsisHeading>
         <Heading lineHeight={1.5}>
-          It seems that
-          <Text color="secondary">{name}</Text>
-          {`has published ${number} more posts!`}
+          It seems that <Text color="secondary">{name}</Text> has published more posts!
+          {/* {`has published ${number} more posts!`} */}
         </Heading>
       </Box>
       <Heading color="primary" mt={5} textAlign="right">
@@ -141,7 +140,7 @@ const Writing = () => (
             isMediumUserDefined
           }
         }
-        allMediumPost(limit: 7, sort: { fields: createdAt, order: DESC }) {
+        allMediumPost(sort: { fields: createdAt, order: DESC }) {
           totalCount
           edges {
             node {
@@ -167,9 +166,13 @@ const Writing = () => (
     `}
     render={({ allMediumPost, site, author }) => {
       const posts = edgeToArray(allMediumPost).map(parsePost(author));
+      console.log("TCL: posts", posts)
+      console.log("TCL: allMediumPost", allMediumPost)
+
 
       const diffAmountArticles = allMediumPost.totalCount - posts.length;
-      if (diffAmountArticles > 0) {
+      // if (diffAmountArticles > 0) {
+      if (true) {
         posts.push({
           ...author,
           id: 'more-field',
